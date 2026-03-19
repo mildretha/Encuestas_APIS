@@ -1,4 +1,9 @@
-# API de Gestión de Encuestas Poblacionales
+# API de Gestión de Encuestas Poblacionales Colombia
+
+
+<img width="692" height="922" alt="image" src="https://github.com/user-attachments/assets/218ddc25-8301-489d-b451-7108369c422d" />
+
+
 
 ## Descripción del Proyecto
 
