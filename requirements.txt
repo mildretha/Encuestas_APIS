@@ -1,0 +1,6 @@
+pandas
+rich
+pydantic
+flask
+fastapi
+uviconr
