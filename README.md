@@ -1,7 +1,7 @@
 # API de Gestión de Encuestas Poblacionales Colombia
 
 
-<img width="740" height="740" alt="image" src="https://github.com/user-attachments/assets/6b48f2b0-160b-4935-a7d3-37574f7a0d23" />
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/6b48f2b0-160b-4935-a7d3-37574f7a0d23" />
 
 
 
