@@ -1,10 +1,10 @@
-# 📊 API de Gestión de Encuestas Poblacionales Colombia
+#  API de Gestión de Encuestas Poblacionales Colombia
 
 <img width="300" height="300" alt="Logo USTA" src="https://github.com/user-attachments/assets/6b48f2b0-160b-4935-a7d3-37574f7a0d23" />
 
 ---
 
-## 📌 Descripción del Proyecto
+##  Descripción del Proyecto
 
 Esta API REST fue desarrollada con **FastAPI** y tiene como objetivo simular un sistema de recolección, validación y análisis de datos provenientes de encuestas poblacionales en Colombia.
 
@@ -12,7 +12,7 @@ El sistema funciona como una **“aduana inteligente de datos”**, garantizando
 
 ---
 
-## 🎯 Objetivos del Proyecto
+## ✔️ Objetivos del Proyecto
 
 - Construir una API REST moderna con FastAPI  
 - Implementar validación avanzada con Pydantic  
@@ -24,7 +24,7 @@ El sistema funciona como una **“aduana inteligente de datos”**, garantizando
 
 ---
 
-## 🧱 Estructura del Proyecto
+## ✔️ Estructura del Proyecto
 
 ```bash
 encuesta-api/
@@ -50,35 +50,43 @@ encuesta-api/
 ```
 
 
-## ⚙️ Instalación y Ejecución
+## ✔️ Instalación y Ejecución
 
-### 1️⃣ Clonar el repositorio
+### ✔️ Clonar el repositorio
 
 ```bash
 git clone https://github.com/mildretha/Encuestas_APIS
 cd Encuestas_APIS
 ```
 
-## 🧪 Crear entorno virtual
+## ✔️ Crear entorno virtual
 
 ```bash
 python -m venv venv
 ```
 
-## 📦 Instalar dependencias
+
+## ✔️ Activar entorno virtual
+
+### 🪟 Windows
+```bash
+venv\Scripts\activate
+```
+
+## ✔️ Instalar dependencias
 
 ```bash
 pip install -r requirements.txt
 ```
 
 
-## 🚀 Ejecutar la API
+## ✔️ Ejecutar la API
 
 ```bash
 uvicorn main:app --reload
 ```
 
-## 🌐 Acceso a la API
+## ✔️ Acceso a la API
 
 Una vez ejecutado el servidor, puedes acceder a la documentación interactiva:
 
@@ -86,7 +94,7 @@ Una vez ejecutado el servidor, puedes acceder a la documentación interactiva:
 - 📕 ReDoc: http://127.0.0.1:8000/redoc
 
 
-## 📦 Modelos de Datos
+## ✔️ Modelos de Datos
 
 La API trabaja con tres modelos principales:
 
@@ -106,7 +114,7 @@ Representa la información demográfica del participante:
 
 ---
 
-### 📝 RespuestaEncuesta
+### ✔️ RespuestaEncuesta
 Representa cada respuesta dentro de la encuesta:
 - ID de la pregunta  
 - Texto de la pregunta  
@@ -116,7 +124,7 @@ Representa cada respuesta dentro de la encuesta:
 
 ---
 
-### 📊 EncuestaCompleta
+### ✔️ EncuestaCompleta
 Modelo principal que agrupa toda la información:
 - Datos del encuestado  
 - Lista de respuestas  
@@ -124,7 +132,7 @@ Modelo principal que agrupa toda la información:
 - Versión de la encuesta
 
 
-## 🔗 Endpoints de la API
+## ✔️ Endpoints de la API
 
 La API expone los siguientes endpoints para gestionar las encuestas:
 
@@ -139,13 +147,13 @@ La API expone los siguientes endpoints para gestionar las encuestas:
 | GET    | `/encuestas/estadisticas/` | Ver estadísticas globales |
 
 
-## 🧪 Ejemplos para Probar los Endpoints
+## ✔️ Ejemplos para Probar los Endpoints
 
 A continuación se muestran ejemplos de cómo consumir la API utilizando JSON en los principales endpoints.
 
 ---
 
-### 📌 1. Crear una encuesta (POST /encuestas/)
+### ✔️ 1. Crear una encuesta (POST /encuestas/)
 
 ```json
 {
@@ -184,7 +192,7 @@ A continuación se muestran ejemplos de cómo consumir la API utilizando JSON en
 
 
 
-## ✅ Validaciones Implementadas
+## ✔️ Validaciones Implementadas
 
 La API incluye validaciones robustas para garantizar la calidad de los datos:
 
@@ -200,7 +208,7 @@ La API incluye validaciones robustas para garantizar la calidad de los datos:
 - Prevención de respuestas duplicadas por pregunta_id
 
 
-## 📊 Estadísticas del Sistema
+## ✔️ Estadísticas del Sistema
 
 La API genera automáticamente estadísticas a partir de las encuestas almacenadas:
 
@@ -213,43 +221,75 @@ La API genera automáticamente estadísticas a partir de las encuestas almacenad
 - Promedio de respuestas por encuesta  
 - Satisfacción con el gobierno por departamento
 
-## 🧠 Arquitectura del Sistema
+## ✔️ Arquitectura del Sistema
 
 El proyecto está organizado bajo una arquitectura modular que separa responsabilidades para mejorar la mantenibilidad y escalabilidad:
 
-### 📌 main.py
+### ✔️ main.py
 Es el punto de entrada de la API con FastAPI. Aquí se definen todos los endpoints y se conectan con la lógica de negocio.
 
-### 📌 models.py
+### ✔️ models.py
 Contiene los modelos de datos basados en Pydantic. Aquí se realizan todas las validaciones de estructura, tipos y reglas del negocio.
 
-### 📌 validators.py
+### ✔️ validators.py
 Define reglas del dominio colombiano como:
 - Departamentos válidos
 - Escala Likert
 - Opciones de género, vivienda y situación laboral
 
-### 📌 services.py
+### ✔️ services.py
 Contiene la lógica de negocio:
 - CRUD de encuestas
 - Cálculo de estadísticas
 - Procesamiento de datos
 
-### 📌 store.py
+### ✔️ store.py
 Simula una base de datos en memoria usando un diccionario Python.
 
-### 📌 loaders.py
+### ✔️ loaders.py
 Permite la carga de datos desde:
 - Archivos locales (CSV, JSON, Excel, etc.)
 - URLs externas
 - APIs REST
 
-### 📌 tests/
+### ✔️ tests/
 Contiene pruebas unitarias e integración para validar:
 - Modelos
 - Endpoints
 - Reglas del sistema
 
+---
+
+## ✔️ Autor
+
+Este proyecto fue desarrollado por:
+
+**Alejandra Díaz**  
+Estudiante de **Estadística**  
+Universidad Santo Tomás (USTA)
+
+---
+
+## ✔️ Repositorio del Proyecto
+
+El código fuente completo de esta API está disponible en GitHub:
+
+✔️ https://github.com/mildretha/Encuestas_APIS
+
+---
+
+## ✔️ Contexto Académico
+
+Este proyecto fue desarrollado como parte de la formación en la carrera de Estadística, con el objetivo de aplicar conocimientos en:
+
+- Programación con Python
+- Desarrollo de APIs con FastAPI
+- Modelado de datos con Pydantic
+- Validación estadística de información
+- Construcción de sistemas de análisis de datos
+- Buenas prácticas de ingeniería de software
+
+---
 
 
 
