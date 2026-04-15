@@ -47,3 +47,21 @@ encuesta-api/
 ├── requirements.txt    # Dependencias del proyecto
 ├── README.md           # Documentación principal
 └── .gitignore          # Archivos ignorados por Git
+```
+
+
+## ⚙️ Instalación y Ejecución
+
+### 1️⃣ Clonar el repositorio
+
+```bash
+git clone https://github.com/mildretha/Encuestas_APIS
+cd Encuestas_APIS
+```
+
+## 🧪 Crear entorno virtual
+
+```bash
+python -m venv venv
+```
+
