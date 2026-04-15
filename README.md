@@ -65,3 +65,192 @@ cd Encuestas_APIS
 python -m venv venv
 ```
 
+## 📦 Instalar dependencias
+
+```bash
+pip install -r requirements.txt
+```
+
+
+## 🚀 Ejecutar la API
+
+```bash
+uvicorn main:app --reload
+```
+
+## 🌐 Acceso a la API
+
+Una vez ejecutado el servidor, puedes acceder a la documentación interactiva:
+
+- 📘 Swagger UI: http://127.0.0.1:8000/docs  
+- 📕 ReDoc: http://127.0.0.1:8000/redoc
+
+
+## 📦 Modelos de Datos
+
+La API trabaja con tres modelos principales:
+
+### 👤 Encuestado
+Representa la información demográfica del participante:
+- Nombre  
+- Edad (0 a 120 años)  
+- Estrato socioeconómico (1 a 6)  
+- Departamento de Colombia  
+- Municipio  
+- Género  
+- Nivel educativo  
+- Ingresos mensuales  
+- Personas en el hogar  
+- Tipo de vivienda  
+- Situación laboral  
+
+---
+
+### 📝 RespuestaEncuesta
+Representa cada respuesta dentro de la encuesta:
+- ID de la pregunta  
+- Texto de la pregunta  
+- Tipo de pregunta (likert, porcentaje, texto, número)  
+- Respuesta validada según el tipo  
+- Observación opcional  
+
+---
+
+### 📊 EncuestaCompleta
+Modelo principal que agrupa toda la información:
+- Datos del encuestado  
+- Lista de respuestas  
+- Fecha de diligenciamiento  
+- Versión de la encuesta
+
+
+## 🔗 Endpoints de la API
+
+La API expone los siguientes endpoints para gestionar las encuestas:
+
+| Método | Endpoint                     | Descripción               |
+|--------|-----------------------------|---------------------------|
+| GET    | `/`                         | Estado de la API          |
+| POST   | `/encuestas/`              | Crear una encuesta        |
+| GET    | `/encuestas/`              | Listar todas las encuestas|
+| GET    | `/encuestas/{id}`          | Obtener una encuesta      |
+| PUT    | `/encuestas/{id}`          | Actualizar una encuesta   |
+| DELETE | `/encuestas/{id}`          | Eliminar una encuesta     |
+| GET    | `/encuestas/estadisticas/` | Ver estadísticas globales |
+
+
+## 🧪 Ejemplos para Probar los Endpoints
+
+A continuación se muestran ejemplos de cómo consumir la API utilizando JSON en los principales endpoints.
+
+---
+
+### 📌 1. Crear una encuesta (POST /encuestas/)
+
+```json
+{
+  "encuestado": {
+    "nombre": "Laura Martínez",
+    "edad": 29,
+    "genero": "femenino",
+    "estrato": 3,
+    "departamento": "ANTIOQUIA",
+    "municipio": "Medellín",
+    "nivel_educativo": "universitario",
+    "ingresos_mensuales": 3200000,
+    "personas_hogar": 3,
+    "vivienda": "propia",
+    "situacion_laboral": "Empleado"
+  },
+  "respuestas": [
+    {
+      "pregunta_id": "P001",
+      "pregunta_texto": "¿Qué tan satisfecho está con los servicios públicos?",
+      "tipo_pregunta": "likert",
+      "respuesta": 4
+    },
+    {
+      "pregunta_id": "P002",
+      "pregunta_texto": "¿Porcentaje de ingreso destinado a vivienda?",
+      "tipo_pregunta": "porcentaje",
+      "respuesta": 30.5
+    }
+  ],
+  "fecha_diligenciamiento": "2026-03-20",
+  "encuesta_version": "1.0"
+}
+```
+
+
+
+
+## ✅ Validaciones Implementadas
+
+La API incluye validaciones robustas para garantizar la calidad de los datos:
+
+- Edad entre **0 y 120 años**
+- Estrato socioeconómico entre **1 y 6**
+- Departamentos válidos de Colombia
+- Género validado contra lista permitida
+- Escala Likert de **1 a 5**
+- Porcentajes entre **0 y 100**
+- Tipos de pregunta controlados (likert, porcentaje, texto, número)
+- Normalización de texto (mayúsculas/minúsculas)
+- Validación de campos obligatorios
+- Prevención de respuestas duplicadas por pregunta_id
+
+
+## 📊 Estadísticas del Sistema
+
+La API genera automáticamente estadísticas a partir de las encuestas almacenadas:
+
+- Total de encuestas registradas  
+- Promedio de edad de los encuestados  
+- Mediana de edad  
+- Distribución por estrato socioeconómico  
+- Distribución por departamento  
+- Distribución por género  
+- Promedio de respuestas por encuesta  
+- Satisfacción con el gobierno por departamento
+
+## 🧠 Arquitectura del Sistema
+
+El proyecto está organizado bajo una arquitectura modular que separa responsabilidades para mejorar la mantenibilidad y escalabilidad:
+
+### 📌 main.py
+Es el punto de entrada de la API con FastAPI. Aquí se definen todos los endpoints y se conectan con la lógica de negocio.
+
+### 📌 models.py
+Contiene los modelos de datos basados en Pydantic. Aquí se realizan todas las validaciones de estructura, tipos y reglas del negocio.
+
+### 📌 validators.py
+Define reglas del dominio colombiano como:
+- Departamentos válidos
+- Escala Likert
+- Opciones de género, vivienda y situación laboral
+
+### 📌 services.py
+Contiene la lógica de negocio:
+- CRUD de encuestas
+- Cálculo de estadísticas
+- Procesamiento de datos
+
+### 📌 store.py
+Simula una base de datos en memoria usando un diccionario Python.
+
+### 📌 loaders.py
+Permite la carga de datos desde:
+- Archivos locales (CSV, JSON, Excel, etc.)
+- URLs externas
+- APIs REST
+
+### 📌 tests/
+Contiene pruebas unitarias e integración para validar:
+- Modelos
+- Endpoints
+- Reglas del sistema
+
+
+
+
+
