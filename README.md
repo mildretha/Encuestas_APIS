@@ -1,133 +1,49 @@
-# API de Gestión de Encuestas Poblacionales Colombia
+# 📊 API de Gestión de Encuestas Poblacionales Colombia
 
-
-<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/6b48f2b0-160b-4935-a7d3-37574f7a0d23" />
-
-
-
-
-## Descripción del Proyecto
-
-Esta API REST fue desarrollada con **FastAPI** y tiene como objetivo simular un sistema de recolección, validación y análisis de datos provenientes de encuestas poblacionales.
-
-El sistema actúa como una **"aduana de datos"**, garantizando que solo información válida, consistente y estructuralmente correcta sea almacenada y utilizada para análisis estadístico.
+<img width="300" height="300" alt="Logo USTA" src="https://github.com/user-attachments/assets/6b48f2b0-160b-4935-a7d3-37574f7a0d23" />
 
 ---
 
-## Objetivos
+## 📌 Descripción del Proyecto
 
-- Implementar una API REST funcional con FastAPI  
-- Aplicar validación robusta de datos con Pydantic  
-- Simular almacenamiento en memoria  
+Esta API REST fue desarrollada con **FastAPI** y tiene como objetivo simular un sistema de recolección, validación y análisis de datos provenientes de encuestas poblacionales en Colombia.
+
+El sistema funciona como una **“aduana inteligente de datos”**, garantizando que la información ingresada sea válida, coherente y estructuralmente correcta antes de ser almacenada y analizada.
+
+---
+
+## 🎯 Objetivos del Proyecto
+
+- Construir una API REST moderna con FastAPI  
+- Implementar validación avanzada con Pydantic  
+- Simular almacenamiento en memoria (sin base de datos)  
 - Desarrollar operaciones CRUD completas  
-- Generar estadísticas descriptivas básicas  
-- Implementar manejo de errores HTTP 422  
-- Aplicar decoradores personalizados  
+- Generar estadísticas descriptivas automáticas  
+- Manejar errores HTTP de forma estructurada  
+- Aplicar arquitectura modular (models, services, store, loaders)  
 
 ---
 
-## Estructura del Proyecto
+## 🧱 Estructura del Proyecto
 
 ```bash
 encuesta-api/
 │
-├── main.py            # API y endpoints
-├── models.py          # Modelos Pydantic y validaciones
-├── validators.py      # Listas auxiliares (departamentos)
-├── requirements.txt   # Dependencias
-├── README.md          # Documentación
-└── .gitignore
-```
-
-
-## Instalación y Ejecución
-
-### 1. Clonar repositorio
-
-```bash
-git clone <TU_REPO_URL>
-cd encuesta-api
-```
-### 2. Crear entorno virtual
-
-```bash
-python -m venv venv
-venv\Scripts\activate   # Windows
-```
-### 3. Instalar dependencias
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Ejecutar la aplicación
-
-```bash
-uvicorn main:app --reload
-```
-
-### 5. Acceder a la documentación
-
-- **Swagger UI:** http://127.0.0.1:8000/docs  
-- **Redoc:** http://127.0.0.1:8000/redoc
-
-
-### 6. Modelos de Datos
-
-##### Encuestado
-
-Contiene información demográfica:
-
-- **nombre**  
-- **edad** *(0-120)*  
-- **estrato** *(1-6)*  
-- **departamento** *(validado contra lista oficial)*  
-
-##### RespuestaEncuesta
-
-- **pregunta_id**  
-- **respuesta** *(int, float o string)*  
-- **comentario** *(opcional)*  
-
-##### EncuestaCompleta
-
-- **encuestado**  
-- **respuestas** *(lista de respuestas)*
-
-### 7. Validaciones Implementadas
-
-- Edad entre **0 y 120**  
-- Estrato entre **1 y 6**  
-- Departamento válido en Colombia  
-- Escala Likert (**1-5**)  
-- Porcentajes (**0-100**)  
-
-Se utilizan validadores de tipo:
-
-```python
-@field_validator(mode="before")
-@field_validator(mode="after")
-  
-```
-
-### 8. Endpoints
-
-| Método | Ruta                       | Descripción         |
-|--------|----------------------------|---------------------|
-| GET    | `/`                        | Estado de la API    |
-| POST   | `/encuestas/`              | Crear encuesta      |
-| GET    | `/encuestas/`              | Listar encuestas    |
-| GET    | `/encuestas/{id}`          | Obtener por ID      |
-| PUT    | `/encuestas/{id}`          | Actualizar encuesta |
-| DELETE | `/encuestas/{id}`          | Eliminar encuesta   |
-| GET    | `/encuestas/estadisticas/` | Estadísticas        |
-
-
-
-### 9. Estadísticas
-
-El endpoint `/encuestas/estadisticas/` calcula:
-
-- Total de encuestas  
-- Promedio de edad  
-- Distribución por estrato  
+├── main.py              # Punto de entrada de la API (FastAPI)
+├── models.py            # Modelos Pydantic y validaciones de datos
+├── validators.py       # Reglas del dominio colombiano
+├── services.py         # Lógica de negocio (CRUD + estadísticas)
+├── store.py            # Base de datos en memoria
+├── loaders.py          # Carga de datos desde archivos, URLs y APIs
+│
+├── tests/              # Pruebas unitarias e integración
+│   ├── test_models.py
+│   └── test_endpoints.py
+│
+├── logs/               # Archivos de logs del sistema
+│   ├── encuesta_api.log
+│   └── frontend_errores.log
+│
+├── requirements.txt    # Dependencias del proyecto
+├── README.md           # Documentación principal
+└── .gitignore          # Archivos ignorados por Git
